@@ -258,9 +258,9 @@ trustline.submit(function (err, res) {
 var JingtumSDK = require('jingtum-sdk');
 var ws = new JingtumSDK.WebSocketServer();
 ws.setTest(false);//切换到正式环境
-console.log(ws._url);
+console.log(ws._ws.url);
 ws.setTest(true);//切换到测试环境
-console.log(ws._url);
+console.log(ws._ws.url);
 ws.connect();
 ws.subscribe(walletNew);
 ws.unsubscribe(walletNew);

@@ -9,48 +9,47 @@ const config         = require('../config.json');
 
 var ws = new WS();
 var wallet = new Wallet(tdat.DEV.wallet3.secret,tdat.DEV.wallet3.address);
-
+//注：需单独测试每一个it。
 describe('websocketserver test', function() {
     it('change environment', function () {
         ws.setTest(false);
-        expect(ws._url).to.equal(config.ws);
+        expect(ws._ws.url).to.equal(config.ws);
         ws.setTest(true);
-        expect(ws._url).to.equal(config.test_ws);
-
+        expect(ws._ws.url).to.equal(config.test_ws);
     });
     it('connect', function (done) {
         ws.connect(function(err,data){
             expect(err).to.be.null;
             expect(data).to.not.empty;
-            expect(data.type).to.equal('connection');
-            expect(data.success).to.equal(true);
+            expect(JSON.parse(data).type).to.equal('connection');
+            expect(JSON.parse(data).success).to.equal(true);
             done();
         });
-        this.timeout(5000);
     });
+
     it('subscribe', function (done) {
         ws.subscribe(wallet, function(err,data){
             expect(err).to.be.null;
             expect(data).to.not.empty;
-            expect(data.type).to.equal('connection');
-            expect(data.success).to.equal(true);
+            expect(JSON.parse(data).type).to.equal('connection');
+            expect(JSON.parse(data).success).to.equal(true);
             done();
         });
-        this.timeout(10000);
     });
+
     it('unsubscribe', function (done) {
         ws.unsubscribe(wallet, function(err,data){
             expect(err).to.be.null;
             expect(data).to.not.empty;
-            expect(data.type).to.equal('connection');
-            expect(data.success).to.equal(true);
+            expect(JSON.parse(data).type).to.equal('connection');
+            expect(JSON.parse(data).success).to.equal(true);
             done();
         });
-        this.timeout(10000);
     });
+
     it('disconnect', function () {
+        var ws = new WS();
         ws.disconnect();
         expect(ws._ws).to.be.null;
     });
-
 });
