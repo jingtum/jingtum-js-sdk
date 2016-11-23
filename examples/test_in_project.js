@@ -26,6 +26,11 @@ walletNew.setActivated(true);
 var a = walletNew.isActivated();//钱包是否激活
 console.log(a);
 
+//切换正式与测试环境
+walletNew.setTest(false);//测试环境
+console.log(walletNew._server._serverURL);
+walletNew.setTest(true);//正式环境
+console.log(walletNew._server._serverURL);
 
 //查询余额
 wallet.getBalance(null, function (err, data) {
@@ -149,6 +154,10 @@ console.log(fingate.createWallet());
 fingate.setAccount('sn37nYrQ6KPJvTFmaBYokS3FjXUWd','jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ');
 fingate.setConfig('token','sign_key');
 console.log(fingate);
+fingate.setTest(false);//切换到正式环境
+console.log(fingate._url);
+fingate.setTest(true);//切换到测试环境
+console.log(fingate._url);
 //发通
 fingate.issueCustomTum({
         'custom':'00000008',
@@ -195,6 +204,7 @@ fingate.queryCustomTum({
 var Wallet = JingtumSDK.Wallet;
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var payment = new JingtumSDK.PaymentOperation(wallet);
+payment.setTest(true);
 payment.setDestination('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
 payment.setDestAmount({'currency':'SWT','value':'0.01','issue':''});
 payment.setValidate(true);
@@ -208,6 +218,7 @@ payment.submit(function (err, res) {
 ///*挂单*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var order = new JingtumSDK.OrderOperation(wallet);
+order.setTest(true);//测试环境
 order.setValidate(true);
 order.setOrderType('sell');
 order.setTakerPays({currency:'USD',value:'0.01',issuer:'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'});
@@ -221,6 +232,7 @@ order.submit(function (err, res) {
 ///*取消挂单*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var cancelorder = new JingtumSDK.CancelOrderOperation(wallet,54);
+cancelorder.setTest(true);
 cancelorder.setValidate(true);
 cancelorder.submit(function (err, res) {
     if(err) {console.log(err);return;}
@@ -231,6 +243,7 @@ cancelorder.submit(function (err, res) {
 ///*设置信任*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var trustline = new JingtumSDK.TrustlineOperation(wallet);
+trustline.setTest(true);
 trustline.setValidate(true);
 trustline.setTrustlineAmount({currency:'USD',value:'100',issuer:'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'});
 trustline.submit(function (err, res) {
@@ -244,6 +257,10 @@ trustline.submit(function (err, res) {
 //消息订阅
 var JingtumSDK = require('jingtum-sdk');
 var ws = new JingtumSDK.WebSocketServer();
+ws.setTest(false);//切换到正式环境
+console.log(ws._url);
+ws.setTest(true);//切换到测试环境
+console.log(ws._url);
 ws.connect();
 ws.subscribe(walletNew);
 ws.unsubscribe(walletNew);

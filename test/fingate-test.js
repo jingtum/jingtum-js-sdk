@@ -3,7 +3,8 @@
  */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const fingate      = require('../lib/FinGate');
+const fingate        = require('../lib/FinGate');
+const config         = require('../config.json');
 describe('FinGate test\n', function() {
     it('create a wallet', function () {
         var wallet = fingate.createWallet();
@@ -27,10 +28,17 @@ describe('FinGate test\n', function() {
         expect(fingate.sign_key).to.equal('sign_key string');
     });
 
+    it('change environment', function () {
+        fingate.setTest(false);
+        expect(fingate._url).to.equal(config.fingate);
+        fingate.setTest(true);
+        expect(fingate._url).to.equal(config.test_fingate);
+    });
+
     it('send tong', function (done) {
         fingate.issueCustomTum({
             'custom':'00000008',
-            'order':'018',//测试是需要修改order值，序号加一。
+            'order':'019',//测试是需要修改order值，序号加一。
             'currency':'8200000008000020160010000000000020000001',
             'amount':'0.01',
             'account':'jMoqSwXyaTSWtGvkYLGyVLd6ppHcDi6UcL',
@@ -39,7 +47,7 @@ describe('FinGate test\n', function() {
             expect(err).to.be.null;
             expect(data).to.be.not.empty;
             expect(data.currency).to.equal('8200000008000020160010000000000020000001');
-            expect(data.order).to.equal('018');//测试是需要修改order值，序号加一。
+            expect(data.order).to.equal('019');//测试是需要修改order值，序号加一。
             done();
         });
         this.timeout(15000);

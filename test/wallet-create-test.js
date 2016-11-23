@@ -1,5 +1,6 @@
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
+const config         = require('../config.json');
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 var secret_gt = 'ssPitXium2f2ZxifEaAB2YTpJUpJV';
@@ -46,5 +47,15 @@ describe('wallet class test', function() {
 		});
 	});
 
+	describe('change environment', function() {
+		it('test server url', function() {
+			var wallet = new Wallet(secret1);
+			expect(wallet).to.be.an.instanceOf(Wallet);
+			wallet.setTest(false);
+			expect(wallet._server._serverURL).to.equal(config.server)
+			wallet.setTest(true);
+			expect(wallet._server._serverURL).to.equal(config.test_server)
+		});
+	});
 });
 

@@ -1,6 +1,7 @@
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const OrderOperation = require('../lib/OrderOperation');
+const config        = require('../config.json');
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 // C account create offer CNY-USD
@@ -10,6 +11,15 @@ var address_c = 'j44rkkVKxnqhm9cP7kQqpj27YGYTFAEFRh';
 describe('wallet create order test', function() {
 
 	describe('test normal create order', function() {
+		it('change environment', function () {
+			var wallet = new Wallet(secret_c);
+			var order = new OrderOperation(wallet);
+			order.setTest(false);
+			expect(order._server._serverURL).to.equal(config.server);
+			order.setTest(true);
+			expect(order._server._serverURL).to.equal(config.test_server);
+		});
+
 		it('sync cny/usd order', function(done) {
 			var wallet = new Wallet(secret_c);
 			var order = new OrderOperation(wallet);
