@@ -1,0 +1,70 @@
+{
+  "DEV": {
+    "ws": "wss://tapi.jingtum.com:5443",
+    "api": "https://tapi.jingtum.com",
+    "fingate_server": "http://test.tongall.com",
+    "tum_pair1":{"currency":"SWT","issuer":""},
+    "tum_pair2":{"currency":"USD","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},
+    "tum_pair3":{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},
+    "wallet1":{
+      "address":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT",
+      "secret":"ssPitXium2f2ZxifEaAB2YTpJUpJV",
+      "balance1":{
+        "value": 129757.754575,
+        "issuer":" ",
+        "code":"SWT"
+       },
+      "balance2":{
+         "value": 5.700000549841681,
+         "issuer":"jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS",
+         "code":"CNY"}
+    },
+    "wallet2":{
+      "address":"jpyyHbEWiuCA6nX37G8gGQvkDRrYJQzcXb",
+      "secret":"ssHC71HCbhp6FVLLcK2oyyUVjcAY4",
+      "payment_id1":"496498",
+      "payment_id2":"946A9A3110EE8AD09FDD8BCE91D94E2FE72582D0E29562B46506B634D9A4F7DF"
+    },
+    "wallet3":{
+      "address":"jJwtrfvKpvJf2w42rmsEzK5fZRqP9Y2xhQ",
+      "secret":"shNKNNtxgBgZDa3YADcAKBFy5W5kK",
+      "payment_id1":"2ECE067A413BA40E3F5A0020931666E6ECDE85EF37BCA0DBF155E8B7451DD928",
+      "client_resource_id1":"495704"
+    },
+    "wallet_orders":{
+      "address":"jfCiWtSt4juFbS3NaXvYV9xNYxakm5yP9S",
+      "secret":"snwjtucx9vEP7hCazriMbVz8hFiK9"
+    },
+    "CNYAmount1":{
+      "currency":"CNY",
+      "value": "1.0",
+      "issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"
+    },
+    "USDAmount1":{
+      "currency":"USD",
+      "value": "1.0",
+      "issuer": "jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS"
+    },
+    "options":{
+      "source_account":"jpyyHbEWiuCA6nX37G8gGQvkDRrYJQzcXb",
+      "destination_account":"jpyyHbEWiuCA6nX37G8gGQvkDRrYJQzcXb",
+      "exclude_failed":false,
+      "page":1,
+      "results_per_page":2
+    }
+    },
+  "SWTAmount1":{
+    "currency":"SWT",
+    "value": "1.0",
+    "issuer":""
+    },
+  "CNYAmount2":{
+    "currency":"CNY",
+    "value": "2.0",
+    "issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"
+    },
+  "InactiveWallet":{
+    "address":"jLLehvbo8hvewZPh3uW3d6ie9qVKzHpqVr",
+    "secret":"ssb9RKc1DP6GzNRzLp7eSr279tn6G"
+    }
+}
