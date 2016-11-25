@@ -152,50 +152,40 @@ wallet.getTransactionList({'source_account':'jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk'
 var fingate = JingtumSDK.FinGate;
 console.log(fingate.createWallet());
 fingate.setAccount('sn37nYrQ6KPJvTFmaBYokS3FjXUWd','jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ');
-fingate.setConfig('token','sign_key');
+fingate.setConfig('00000008','5361ef7e7e36c155dcc77354913d1a4dd458f37b');
 console.log(fingate);
 fingate.setTest(false);//切换到正式环境
 console.log(fingate._url);
 fingate.setTest(true);//切换到测试环境
 console.log(fingate._url);
+
 //发通
 fingate.issueCustomTum({
-        'custom':'00000008',
-        'order':'006',
         'currency':'8200000008000020160010000000000020000001',
-        'amount':'0.05',
-        'account':'jMoqSwXyaTSWtGvkYLGyVLd6ppHcDi6UcL',
-        'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b'},
+        'amount':'0.01',
+        'account':'jMoqSwXyaTSWtGvkYLGyVLd6ppHcDi6UcL'},
     function (err, data) {
         if(err) {console.log(err);return;}
         console.log(data);
     }
 );
 
+
 //查询发通状态
-fingate.queryCustomTum({
-    'custom':'00000008',
-    'currency':'8200000008000020160010000000000020000001',
-    'date':'1479183410',
-    'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b',
-    'url':'http://tfingate.jingtum.com/v1/business/node'
-},function (err, data) {
-    if(err) {console.log(err);return;}
-    console.log(data);
+fingate.queryIssue({
+    'order':'PREFIX67936620161125163618000001'},
+    function (err, data) {
+        if(err) {console.log(err);return;}
+        console.log(data);
 });
 
 //查询通状态（信用额度多少，发行了多少）
 fingate.queryCustomTum({
-    'custom':'00000008',
-    'currency':'8200000008000020160010000000000020000001',
-    'date':'1479183410',
-    'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b',
-    'url':'http://tfingate.jingtum.com/v1/business/node'
-},function (err, data) {
+    'currency':'8200000008000020160010000000000020000001'},
+    function (err, data) {
     if(err) {console.log(err);return;}
     console.log(data);
 });
-
 
 
 //------------------operations-------------------------
@@ -206,7 +196,8 @@ var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var payment = new JingtumSDK.PaymentOperation(wallet);
 payment.setTest(true);
 payment.setDestination('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
-payment.setDestAmount({'currency':'SWT','value':'0.01','issue':''});
+payment.setDestAmount({'currency':'SWT','value':'0.01','issuer':''});
+payment.setPath([{'account':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf','type':1,'type_hex':'0000000000000001'}]);
 payment.setValidate(true);
 payment.setClientResourceID('20611171957');
 payment.submit(function (err, res) {
