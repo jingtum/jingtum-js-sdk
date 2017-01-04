@@ -33,9 +33,9 @@ walletNew.isActivated(function (err,msg) {
 
 
 //切换正式与测试环境
-walletNew.setTest(false);//测试环境
+walletNew.setTest(true);//测试环境
 console.log(walletNew._server._serverURL);
-walletNew.setTest(true);//正式环境
+walletNew.setTest(false);//正式环境
 console.log(walletNew._server._serverURL);
 
 //查询余额
