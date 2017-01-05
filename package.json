@@ -1,6 +1,6 @@
 {
   "name": "jingtum-sdk",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "jingtum node.js sdk for clients development",
   "keywords": [
     "jingtum,swt,fingate,wallet"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/jingtum/jingtum-js-sdk.git"
   },
-  "author": "landoyjx",
+  "author": "landoyjx,wudan_npm",
   "license": "Apache-2.0",
   "devDependencies": {
     "chai": "^3.5.0",
@@ -42,6 +42,7 @@
     "printf": "^0.2.3",
     "request": "^2.72.0",
     "stringformat": "0.0.5",
+    "sha1": "^1.1.1",
     "utf8": "^2.1.1",
     "ws": "^1.1.0"
   },

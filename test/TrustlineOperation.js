@@ -11,9 +11,9 @@ describe('Wallet trustline tests', function() {
     it('change environment', function () {
         var wallet = new Wallet(tdat.DEV.wallet3.secret);
         var trustline = new TrustlineOperation(wallet);
-        trustline.setTest(false);
+        wallet.setTest(false);
         expect(trustline._server._serverURL).to.equal(config.server);
-        trustline.setTest(true);
+        wallet.setTest(true);
         expect(trustline._server._serverURL).to.equal(config.test_server);
     });
 

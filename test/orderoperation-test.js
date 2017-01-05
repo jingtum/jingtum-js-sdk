@@ -14,9 +14,9 @@ describe('wallet create order test', function() {
 		it('change environment', function () {
 			var wallet = new Wallet(secret_c);
 			var order = new OrderOperation(wallet);
-			order.setTest(false);
+			wallet.setTest(false);
 			expect(order._server._serverURL).to.equal(config.server);
-			order.setTest(true);
+			wallet.setTest(true);
 			expect(order._server._serverURL).to.equal(config.test_server);
 		});
 

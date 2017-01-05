@@ -11,9 +11,9 @@ describe('Wallet payment test\n', function() {
     it('change environment', function () {
         var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
         var payment = new PaymentOperation(wallet);
-        payment.setTest(false);
+        wallet.setTest(false);
         expect(payment._server._serverURL).to.equal(config.server);
-        payment.setTest(true);
+        wallet.setTest(true);
         expect(payment._server._serverURL).to.equal(config.test_server);
 
     });

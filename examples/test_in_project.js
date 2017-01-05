@@ -18,7 +18,7 @@ var walletNew2 = new Wallet('sh6JBD14JpRRRQM8Li4r5EAer4Yka','jp53tPyrQLoFriTJhtm
 //console.log(walletNew.getWallet());
 
 //创建钱包3
-var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 
 
 //激活钱包
@@ -33,9 +33,9 @@ walletNew.isActivated(function (err,msg) {
 
 
 //切换正式与测试环境
-walletNew.setTest(true);//测试环境
-console.log(walletNew._server._serverURL);
 walletNew.setTest(false);//正式环境
+console.log(walletNew._server._serverURL);
+walletNew.setTest(true);//测试环境
 console.log(walletNew._server._serverURL);
 
 //查询余额
@@ -91,7 +91,7 @@ wallet.getTrustLineList({'currency':'USD','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5
 });
 
 //查询支付路径
-wallet.getPathList('jD2RbZEpBG3T6iWDPyPiNBvpU8sAhRYbpZ',{'value':'1.00','currency':'USD','issuer':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf'},{'issuer':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf','currency':'USD'}
+wallet.getPathList('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R',{'value':'1.00','currency':'CNY','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'},null
     , function(err, data) {
         if(err) console.log(err);
         else console.log(data);
@@ -196,19 +196,37 @@ fingate.queryCustomTum({
 
 //------------------operations-------------------------
 
-///*支付*/
+/*支付*/
 var Wallet = JingtumSDK.Wallet;
-var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 var payment = new JingtumSDK.PaymentOperation(wallet);
 payment.setDestination('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
 payment.setDestAmount({'currency':'SWT','value':'0.01','issuer':''});
-payment.setPath([{'account':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf','type':1,'type_hex':'0000000000000001'}]);
 payment.setValidate(true);
 payment.setClientResourceID('20611171957');
 payment.submit(function (err, res) {
     if(err) {console.log(err);return;}
     console.log(res);
 });
+
+/*按指定路径支付*/
+wallet.getPathList('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R',{'value':'1.00','currency':'CNY','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'},null
+    , function(err, data) {
+        if(err) console.log(err);
+        else {
+            var key = data[0].key;
+            var payment = new JingtumSDK.PaymentOperation(wallet);
+            payment.setDestination('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R');
+            payment.setDestAmount({'currency':'CNY','value':'1.00','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'});
+            payment.setPath(key);//指定路径
+            payment.setValidate(true);
+            payment.submit(function (err, res) {
+                if(err) {console.log(err);return;}
+                console.log(res);
+            });
+        }
+    });
+
 
 
 ///*挂单*/

@@ -5,6 +5,7 @@ const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const ParamException = require('../lib/Error').ParamException;
 const tdat = require('./Test_data.json');//Test data
+var sha1             = require('sha1');
 
 
 describe('Tests about payment path\n', function() {
@@ -38,11 +39,11 @@ describe('Tests about payment path\n', function() {
       // have cny
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getPathList(tdat.DEV.wallet3.address,
-          tdat.DEV.CNYAmount1,null, function(err, data) {
+          tdat.DEV.USDAmount1,null, function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.success).to.be.failed;
-        expect(data.message).to.be.equal('No paths found. The destination_account does not accept CNY, source may not fund enough.');
+        expect(data.message).to.be.equal('No paths found. The destination_account does not accept USD, source may not fund enough.');
         done();
       });
     });
@@ -53,9 +54,9 @@ describe('Tests about payment path\n', function() {
       wallet.getPathList(tdat.DEV.wallet1.address,
           tdat.DEV.CNYAmount1,null, function(err, data) {
         expect(err).to.be.null;
-        expect(data.success).to.be.true;
-        expect(data.payments.length).to.be.least(1);
-        expect(data.payments[0].paths).to.eql('[[{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT","type":48,"type_hex":"0000000000000030"}]]');
+        expect(data.length).to.be.least(1);
+        expect(data[0].key).to.eql('7d6370e3dc63fa2c9351b51c7069ba08799d888a');
+        expect(data[0].choice).to.eql({ value: '1', currency: 'SWT', issuer: '' });
         done();
       });
     });
@@ -64,9 +65,8 @@ describe('Tests about payment path\n', function() {
       wallet.getPathList(tdat.DEV.wallet1.address,
           tdat.DEV.CNYAmount1,{'issuer':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf','currency':'USD'}, function(err, data) {
         expect(err).to.be.null;
-        expect(data.success).to.be.true;
-        expect(data.payments.length).to.be.least(1);
-        expect(data.payments[0].paths).to.eql('[[{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT","type":48,"type_hex":"0000000000000030"}]]');
+        expect(data.length).to.be.least(1);
+        expect(data[0].key).to.eql(sha1(JSON.stringify('[[{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT","type":48,"type_hex":"0000000000000030"}]]')));
         done();
       });
     });
