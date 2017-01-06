@@ -13,7 +13,7 @@ It provides:
 
 Using npm to include jingtum-js-sdk in your own project:
 ### To use as a module in a Node.js project
-1. Install the jingtum-sd through npm:
+1.Install the jingtum-sd through npm:
 ```
 npm install jingtum-sdk --save
 ```
@@ -31,7 +31,7 @@ npm config set registry "http://registry.npmjs.org/"
 ```
 This should reduce the installation time in Aliyun.
 
-2. require/import it in the JavaScript client program:
+2.require/import it in the JavaScript client program:
 ```js
 var JingtumSDK = require('jingtum-sdk');
 var fingate = JingtumSDK.FinGate;
