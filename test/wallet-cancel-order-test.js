@@ -3,6 +3,9 @@ const CancelOrderOperation = require('../lib/CancelOrderOperation');
 const OrderOperation       = require('../lib/OrderOperation');
 const Wallet               = require('../lib/Wallet');
 const config               = require('../config.json');
+const fingate          = require('../lib/FinGate');
+
+fingate.setMode(false);//切换到测试环境
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 // C account create offer CNY-USD
@@ -11,27 +14,21 @@ var address_c = 'j44rkkVKxnqhm9cP7kQqpj27YGYTFAEFRh';
 
 describe('wallet cancel order test', function() {
 	describe('test normal cancel order', function() {
-		it('change environment', function () {
-			var wallet = new Wallet(secret_c, address_c);
-			var cancelorder = new CancelOrderOperation(wallet,3);
-			cancelorder.setTest(false);
-			expect(cancelorder._server._serverURL).to.equal(config.server);
-			cancelorder.setTest(true);
-			expect(cancelorder._server._serverURL).to.equal(config.test_server);
-		});
-		it('sync cancel cny/usd order', function(done) {
-			var wallet = new Wallet(secret_c, address_c);
+		it('sync cancel swt/usd order', function(done) {
+			var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 			var order = new OrderOperation(wallet);
-			order.setOrderType('sell');
+			order.setType(order.SELL);
 			order.setValidate(true);
-			order.setTakerPays({ value: '1', currency: 'CNY', issuer: gt });
-			order.setTakerGets({ value: '1', currency: 'USD', issuer: gt });
+			order.setPair('SWT/USD:' + gt);
+			order.setAmount(0.1);
+			order.setPrice(0.5);
 			order.submit(function (err, data) {
 				expect(err).to.be.null;
 				expect(data.success).to.be.equal(true);
 				expect(data.state).to.be.equal('validated');
 				expect(data.sequence).to.not.null;
-				var cancelorder = new CancelOrderOperation(wallet,data.sequence);
+				var cancelorder = new CancelOrderOperation(wallet);
+				cancelorder.setSequence(data.sequence);
 				cancelorder.setValidate(true);
 				cancelorder.submit(function (err2, data2) {
 					expect(err2).to.be.null;
@@ -43,19 +40,21 @@ describe('wallet cancel order test', function() {
 			});
 			this.timeout(20000);
 		});
-		it('async cancel cny/usd order', function(done) {
-			var wallet = new Wallet(secret_c, address_c);
+		it('async cancel swt/usd order', function(done) {
+			var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 			var order = new OrderOperation(wallet);
-			order.setOrderType('sell');
+			order.setType(order.SELL);
 			order.setValidate(true);
-			order.setTakerPays({ value: '1', currency: 'CNY', issuer: gt });
-			order.setTakerGets({ value: '1', currency: 'USD', issuer: gt });
+			order.setPair('SWT/USD:' + gt);
+			order.setAmount(0.1);
+			order.setPrice(0.5);
 			order.submit(function (err, data) {
 				expect(err).to.be.null;
 				expect(data.success).to.be.equal(true);
 				expect(data.state).to.be.equal('validated');
 				expect(data.sequence).to.not.null;
-				var cancelorder = new CancelOrderOperation(wallet,data.sequence);
+				var cancelorder = new CancelOrderOperation(wallet);
+				cancelorder.setSequence(data.sequence);
 				cancelorder.setValidate(false);
 				cancelorder.submit(function (err2, data2) {
 					expect(err2).to.be.null;

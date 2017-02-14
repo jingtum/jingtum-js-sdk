@@ -7,7 +7,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "nodejs test/Test_Config.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

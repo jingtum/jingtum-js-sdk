@@ -5,13 +5,15 @@ const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const fingate        = require('../lib/FinGate');
 const config         = require('../config.json');
+
+fingate.setMode(false);//切换到测试环境
+
 describe('FinGate test\n', function() {
     it('create a wallet', function () {
         var wallet = fingate.createWallet();
         expect(wallet).to.be.an.instanceOf(Wallet);
         expect(wallet.address).to.not.empty;
         expect(wallet.secret).to.not.empty;
-        expect(wallet._activated).to.be.equal(false);
     });
 
     it('set fingate account', function () {
@@ -22,63 +24,60 @@ describe('FinGate test\n', function() {
         expect(fingate.secret).to.equal(secret);
     });
 
-    it('set config', function () {
-        fingate.setConfig('token','sign_key string');
-        expect(fingate.token).to.equal('token');
-        expect(fingate.sign_key).to.equal('sign_key string');
+    it('set activeAmount', function () {
+        fingate.setActiveAmount(10);
+        expect(fingate.activeAmount).to.equal('10');
+    });
+
+    it('set token', function () {
+        fingate.setToken('00000006');
+        expect(fingate._custom).to.equal('00000006');
+    });
+
+    it('set key', function () {
+        fingate.setKey('599669081491b660cb5ea9b2c9a183378c10d86d');
+        expect(fingate._ekey).to.equal('599669081491b660cb5ea9b2c9a183378c10d86d');
     });
 
     it('change environment', function () {
-        fingate.setTest(false);
+        fingate.setMode(true);
         expect(fingate._url).to.equal(config.fingate);
-        fingate.setTest(true);
+        fingate.setMode(false);
         expect(fingate._url).to.equal(config.test_fingate);
     });
 
     it('send tong', function (done) {
-        fingate.issueCustomTum({
-            'custom':'00000008',
-            'order':'019',//测试是需要修改order值，序号加一。
-            'currency':'8200000008000020160010000000000020000001',
-            'amount':'0.01',
-            'account':'jMoqSwXyaTSWtGvkYLGyVLd6ppHcDi6UcL',
-            'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b'
-        }, function (err,data) {
+        fingate.issueCustomTum(
+            '8200000006000020170019000000000020000001',
+            '0.01',
+            'jpkLNK2D1y8D8sinoRuk2PXoT1eDQvx56p'
+        , function (err,data) {
             expect(err).to.be.null;
             expect(data).to.be.not.empty;
-            expect(data.currency).to.equal('8200000008000020160010000000000020000001');
-            expect(data.order).to.equal('019');//测试是需要修改order值，序号加一。
+            expect(data.code).to.equal(0);
             done();
         });
         this.timeout(15000);
     });
 
     it('send tong status', function (done) {
-        fingate.queryIssue({
-            'custom':'00000008',
-            'order':'004',
-            'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b',
-            'url':'http://tfingate.jingtum.com/v1/business/node'
-        }, function (err,data) {
+        fingate.queryIssue('PREFIX90301520170118210106000001'
+            , function (err,data) {
             expect(err).to.be.null;
             expect(data).to.be.not.empty;
-            expect(data.order).to.equal('004');
+            expect(data.order).to.equal('PREFIX90301520170118210106000001');
             expect(data.status).to.equal(true);
             done();
         });
     });
 
     it('tong status', function (done) {
-        fingate.queryCustomTum({
-            'custom':'00000008',
-            'currency':'8200000008000020160010000000000020000001',
-            'date':'1479183410',
-            'key':'5361ef7e7e36c155dcc77354913d1a4dd458f37b',
-            'url':'http://tfingate.jingtum.com/v1/business/node'
-        }, function (err, data) {
+        fingate.queryCustomTum(
+            '8200000006000020170019000000000020000001'
+            , function (err, data) {
             expect(err).to.be.null;
             expect(data).to.be.not.empty;
-            expect(data.currency).to.equal('8200000008000020160010000000000020000001');
+            expect(data.currency).to.equal('8200000006000020170019000000000020000001');
             done();
         });
     });

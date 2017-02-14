@@ -4,6 +4,9 @@
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const tdat = require('./Test_data.json');//Test data
+const fingate        = require('../lib/FinGate');
+
+fingate.setMode(false);//切换到测试环境
 
 
 describe('Test order list\n', function() {
@@ -11,7 +14,7 @@ describe('Test order list\n', function() {
     it('activated account', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
 
-      wallet.getOrders(null, function(err, data) {
+      wallet.getOrderList( function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
@@ -21,7 +24,7 @@ describe('Test order list\n', function() {
     });
     it('not activated account', function(done) {
       var wallet = new Wallet(tdat.InactiveWallet.secret);
-      wallet.getOrders(null, function(err, data) {
+      wallet.getOrderList(function(err, data) {
         expect(err).to.be.null;
         expect(data.success).to.equal('failed');
         expect(data.message).to.equal('Account not found.');
@@ -31,7 +34,7 @@ describe('Test order list\n', function() {
     it('Count order list num', function(done) {
       // have cny
       var wallet = new Wallet(tdat.DEV.wallet3.secret);
-      wallet.getOrders(null, function(err, data) {
+      wallet.getOrderList(function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         console.log("Return orders", data.orders.length);

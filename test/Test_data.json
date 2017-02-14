@@ -1,11 +1,5 @@
 {
   "DEV": {
-    "ws": "wss://tapi.jingtum.com:5443",
-    "api": "https://tapi.jingtum.com",
-    "fingate_server": "http://test.tongall.com",
-    "tum_pair1":{"currency":"SWT","issuer":""},
-    "tum_pair2":{"currency":"USD","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},
-    "tum_pair3":{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},
     "wallet1":{
       "address":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT",
       "secret":"ssPitXium2f2ZxifEaAB2YTpJUpJV",
@@ -28,8 +22,8 @@
     "wallet3":{
       "address":"jJwtrfvKpvJf2w42rmsEzK5fZRqP9Y2xhQ",
       "secret":"shNKNNtxgBgZDa3YADcAKBFy5W5kK",
-      "payment_id1":"2ECE067A413BA40E3F5A0020931666E6ECDE85EF37BCA0DBF155E8B7451DD928",
-      "client_resource_id1":"495704"
+      "payment_id1":"9468A1267455407D486372D8C55180AF7FD84EBA1E0135837246EB1CA7C2929E",
+      "client_resource_id1":"PREFIX86637720170208103948000001"
     },
     "wallet_orders":{
       "address":"jfCiWtSt4juFbS3NaXvYV9xNYxakm5yP9S",

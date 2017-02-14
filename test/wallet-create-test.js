@@ -1,6 +1,9 @@
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const config         = require('../config.json');
+const fingate          = require('../lib/FinGate');
+
+fingate.setMode(false);//切换到测试环境
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 var secret_gt = 'ssPitXium2f2ZxifEaAB2YTpJUpJV';
@@ -23,38 +26,26 @@ describe('wallet class test', function() {
 			expect(wallet).to.be.an.instanceof(Wallet);
 			expect(wallet.address).to.be.equal(address1);
 			expect(wallet.secret).to.be.equal(secret1);
-			expect(wallet._activated).to.be.equal(false);
 		});
 		it('2.another normal wallet', function() {
 			var wallet = new Wallet(secret2);//密码创建
 			expect(wallet).to.be.an.instanceof(Wallet);
 			expect(wallet.address).to.be.equal(address2);
 			expect(wallet.secret).to.be.equal(secret2);
-			expect(wallet._activated).to.be.equal(false);
 		});
 		
 	});
 
-	describe('test wallet status', function() {
-		it('is activated wallet', function() {
-			// not activated account
-			var wallet = new Wallet(secret1, address1);
-			expect(wallet.isActivated()).to.equal(false);
-			// activated account
-			wallet = new Wallet(secret2, address2);
-			wallet.setActivated(true);
-			expect(wallet.isActivated()).to.equal(true);
-		});
-	});
-
 	describe('change environment', function() {
 		it('test server url', function() {
+			fingate.setMode(true);//切换到正式环境
 			var wallet = new Wallet(secret1);
 			expect(wallet).to.be.an.instanceOf(Wallet);
-			wallet.setTest(false);
-			expect(wallet._server._serverURL).to.equal(config.server)
-			wallet.setTest(true);
-			expect(wallet._server._serverURL).to.equal(config.test_server)
+			expect(wallet._server._serverURL).to.equal(config.server);
+
+			fingate.setMode(false);//切换到测试环境
+			var wallet2 = new Wallet(secret1);
+			expect(wallet2._server._serverURL).to.equal(config.test_server)
 		});
 	});
 });

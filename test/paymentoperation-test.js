@@ -5,16 +5,19 @@ const expect           = require('chai').expect;
 const Wallet           = require('../lib/Wallet');
 const PaymentOperation = require('../lib/PaymentOperation');
 const sr               = require('../lib/Server');
+const fingate          = require('../lib/FinGate');
 const config           = require('../config.json');
 
 describe('Wallet payment test\n', function() {
     it('change environment', function () {
+        fingate.setMode(true);
         var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
         var payment = new PaymentOperation(wallet);
-        wallet.setTest(false);
         expect(payment._server._serverURL).to.equal(config.server);
-        wallet.setTest(true);
-        expect(payment._server._serverURL).to.equal(config.test_server);
+
+        fingate.setMode(false);
+        var payment2 = new PaymentOperation(wallet);
+        expect(payment2._server._serverURL).to.equal(config.test_server);
 
     });
 
@@ -22,10 +25,10 @@ describe('Wallet payment test\n', function() {
         var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
         var payment = new PaymentOperation(wallet);
         payment.setValidate(true);
-        payment.setDestination('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
-        payment.setDestAmount({'currency':'SWT','value':'0.01','issue':''});
+        payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
+        payment.setAmount({'currency':'SWT','value':'0.01','issue':''});
         var id = new sr().getClientResourceID();
-        payment.setClientResourceID(id);
+        payment.setClientId(id);
         payment.submit(function (err, data) {
             expect(err).to.be.null;
             expect(data).to.not.empty;
@@ -41,10 +44,10 @@ describe('Wallet payment test\n', function() {
         var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
         var payment = new PaymentOperation(wallet);
         payment.setValidate(false);
-        payment.setDestination('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
-        payment.setDestAmount({'currency':'SWT','value':'0.01','issue':''});
+        payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
+        payment.setAmount({'currency':'SWT','value':'0.01','issue':''});
         var id = new sr().getClientResourceID();
-        payment.setClientResourceID(id);
+        payment.setClientId(id);
         payment.submit(function (err, data) {
             expect(err).to.be.null;
             expect(data).to.not.empty;

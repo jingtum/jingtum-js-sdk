@@ -5,6 +5,9 @@ const expect                  = require('chai').expect;
 const Wallet                  = require('../lib/Wallet');
 const TrustlineOperation      = require('../lib/TrustlineOperation');
 const tdat                    = require('./Test_data.json');//Test data
+const fingate                 = require('../lib/FinGate');
+
+fingate.setMode(false);//切换到测试环境
 
 
 describe('Wallet trustline tests', function() {
