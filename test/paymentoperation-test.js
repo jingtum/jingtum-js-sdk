@@ -10,12 +10,12 @@ const config           = require('../config.json');
 
 describe('Wallet payment test\n', function() {
     it('change environment', function () {
-        fingate.setMode(true);
+        fingate.setMode(fingate.PRODUCTION);
         var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
         var payment = new PaymentOperation(wallet);
         expect(payment._server._serverURL).to.equal(config.server);
 
-        fingate.setMode(false);
+        fingate.setMode(fingate.DEVELOPEMENT);
         var payment2 = new PaymentOperation(wallet);
         expect(payment2._server._serverURL).to.equal(config.test_server);
 

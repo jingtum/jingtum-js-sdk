@@ -15,11 +15,11 @@ describe('wallet create order test', function() {
 		it('change environment', function () {
 			var wallet = new Wallet(secret_c);
 
-			fingate.setMode(true);
+			fingate.setMode(fingate.PRODUCTION);
 			var order1 = new OrderOperation(wallet);
 			expect(order1._server._serverURL).to.equal(config.server);
 
-			fingate.setMode(false);
+			fingate.setMode(fingate.DEVELOPEMENT);
 			var order2 = new OrderOperation(wallet);
 			expect(order2._server._serverURL).to.equal(config.test_server);
 		});

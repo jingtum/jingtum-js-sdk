@@ -9,10 +9,6 @@ const fingate          = require('../lib/FinGate');
 
 
 
-
-//var fingate = new FinGate();//FinGate::getInstance();
-
-//fingate.setMode(FinGate.DEVLOPMENT);
 fingate.setMode(fingate.DEVELOPEMENT);
 
 describe('wallet balance test', function() {
@@ -25,6 +21,7 @@ describe('wallet balance test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.balances.length).to.have.least(1);
+        console.log(data.balances);
         done();
       });
     });

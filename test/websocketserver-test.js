@@ -8,7 +8,7 @@ const tdat           = require('./Test_data.json');//Test data
 const config         = require('../config.json');
 const fingate        = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 
 var wallet = new Wallet(tdat.DEV.wallet3.secret);
@@ -16,11 +16,11 @@ var wallet = new Wallet(tdat.DEV.wallet3.secret);
 describe('websocketserver test', function() {
 
     it('change environment', function () {
-        fingate.setMode(true);//切换到正式
+        fingate.setMode(fingate.PRODUCTION);//切换到正式
         var ws1 = new WS();
         expect(ws1._ws.url).to.equal(config.ws);
 
-        fingate.setMode(false);//切换到测试
+        fingate.setMode(fingate.DEVELOPEMENT);//切换到测试
         var ws2 = new WS();
         expect(ws2._ws.url).to.equal(config.test_ws);
     });

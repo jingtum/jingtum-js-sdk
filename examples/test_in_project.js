@@ -22,7 +22,7 @@ var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 
 
 //激活钱包
-fingate.setActiveAmount(30);//默认25,
+fingate.setActiveAmount(10);//默认25
 fingate.activateWallet(wallet.address, function (err, data) {
     if(err) console.log(err);
     console.log(data);
@@ -36,9 +36,9 @@ walletNew.isActivated(function (err,msg) {
 
 
 //切换正式与测试环境
-fingate.setMode(true);//正式环境
+fingate.setMode(fingate.PRODUCTION);//正式环境
 console.log(fingate._single);
-fingate.setMode(false);//测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//测试环境
 console.log(fingate._single);
 
 //查询余额
@@ -234,7 +234,7 @@ wallet.getChoices('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R',{'value':'0.01','currency
 
 
 ///*挂单*/
-fingate.setMode(false);
+fingate.setMode(fingate.DEVELOPEMENT);
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var order = new JingtumSDK.OrderOperation(wallet);
 order.setValidate(true);
@@ -249,7 +249,7 @@ order.submit(function (err, res) {
 
 
 ///*取消挂单*/
-fingate.setMode(false);
+fingate.setMode(fingate.DEVELOPEMENT);
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var cancelorder = new JingtumSDK.CancelOrderOperation(wallet);
 cancelorder.setSequence(136);
@@ -274,7 +274,7 @@ trustline.submit(function (err, res) {
 //--------------websocketServer------------------------
 
 //消息订阅
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
 var JingtumSDK = require('jingtum-sdk');
 var ws = new JingtumSDK.WebSocketServer();
 console.log(ws._ws.url);

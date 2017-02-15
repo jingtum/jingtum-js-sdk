@@ -6,7 +6,7 @@ const Wallet         = require('../lib/Wallet');
 const fingate        = require('../lib/FinGate');
 const config         = require('../config.json');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
 
 describe('FinGate test\n', function() {
     it('create a wallet', function () {
@@ -25,8 +25,8 @@ describe('FinGate test\n', function() {
     });
 
     it('set activeAmount', function () {
-        fingate.setActiveAmount(10);
-        expect(fingate.activeAmount).to.equal('10');
+        fingate.setActiveAmount(30);
+        expect(fingate.activeAmount).to.equal('30');
     });
 
     it('set token', function () {
@@ -40,9 +40,9 @@ describe('FinGate test\n', function() {
     });
 
     it('change environment', function () {
-        fingate.setMode(true);
+        fingate.setMode(fingate.PRODUCTION);
         expect(fingate._url).to.equal(config.fingate);
-        fingate.setMode(false);
+        fingate.setMode(fingate.DEVELOPEMENT);
         expect(fingate._url).to.equal(config.test_fingate);
     });
 

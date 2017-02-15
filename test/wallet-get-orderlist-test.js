@@ -6,7 +6,7 @@ const Wallet         = require('../lib/Wallet');
 const tdat = require('./Test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 
 describe('Test order list\n', function() {
@@ -19,6 +19,7 @@ describe('Test order list\n', function() {
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
         expect(data.orders).to.have.length.least(1);
+console.log(data.orders);
         done();
       });
     });

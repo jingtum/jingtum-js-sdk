@@ -8,16 +8,16 @@ const tdat = require('./Test_data.json');//Test data
 var sha1             = require('sha1');
 const fingate        = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
 
 
-describe('Tests about payment choices\n', function() {
+describe('Tests about payment path\n', function() {
   before(function() {
     //Init the server
   });
 
-  describe('Get choices tests\n', function() {
-    it('SWT payment choices:', function(done) {
+  describe('Get path tests\n', function() {
+    it('SWT payment path:', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getChoices(tdat.DEV.wallet2.address,
           tdat.SWTAmount1,null, function(err, data) {
@@ -28,7 +28,7 @@ describe('Tests about payment choices\n', function() {
       });
     });
 
-    it('SWT payment choices with inactive address', function(done) {
+    it('SWT payment path with inactive address', function(done) {
       var wallet = new Wallet(tdat.InactiveWallet.secret);
       wallet.getChoices(tdat.DEV.wallet3.address,
           tdat.DEV.CNYAmount1,null, function(err, data) {
@@ -38,7 +38,7 @@ describe('Tests about payment choices\n', function() {
       });
     });
 
-    it('Payment choices not exist test', function(done) {
+    it('Payment path not exist test', function(done) {
       // have cny
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getChoices(tdat.DEV.wallet3.address,
@@ -51,7 +51,7 @@ describe('Tests about payment choices\n', function() {
       });
     });
 
-    it('Payment choices all', function(done) {
+    it('Payment path all', function(done) {
 
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getChoices(tdat.DEV.wallet3.address,
@@ -64,7 +64,7 @@ describe('Tests about payment choices\n', function() {
         done();
       });
     });
-    it('Payment choices with currency type', function(done) {
+    it('Payment path with currency type', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getChoices(tdat.DEV.wallet3.address,
           {"currency":"CNY", "value": "0.01", "issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},

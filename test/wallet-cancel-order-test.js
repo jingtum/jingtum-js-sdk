@@ -5,7 +5,7 @@ const Wallet               = require('../lib/Wallet');
 const config               = require('../config.json');
 const fingate          = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 // C account create offer CNY-USD

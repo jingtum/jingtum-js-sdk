@@ -1,10 +1,9 @@
 const expect         = require('chai').expect;
 const printf         = require('printf');
 const Wallet         = require('../lib/Wallet');
-const ParamException = require('../lib/Error').ParamException;
 const fingate          = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 // C account create offer CNY-USD
 var secret_c = 'safUazSj1q6v4CVYEyeF58k59USfC';

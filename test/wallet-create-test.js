@@ -3,7 +3,7 @@ const Wallet         = require('../lib/Wallet');
 const config         = require('../config.json');
 const fingate          = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 var gt = 'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT';
 var secret_gt = 'ssPitXium2f2ZxifEaAB2YTpJUpJV';
@@ -38,12 +38,12 @@ describe('wallet class test', function() {
 
 	describe('change environment', function() {
 		it('test server url', function() {
-			fingate.setMode(true);//切换到正式环境
+			fingate.setMode(fingate.PRODUCTION);//切换到正式环境
 			var wallet = new Wallet(secret1);
 			expect(wallet).to.be.an.instanceOf(Wallet);
 			expect(wallet._server._serverURL).to.equal(config.server);
 
-			fingate.setMode(false);//切换到测试环境
+			fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
 			var wallet2 = new Wallet(secret1);
 			expect(wallet2._server._serverURL).to.equal(config.test_server)
 		});

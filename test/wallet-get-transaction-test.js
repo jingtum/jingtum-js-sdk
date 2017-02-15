@@ -7,7 +7,7 @@ const Wallet         = require('../lib/Wallet');
 const tdat = require('./Test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
 
 describe('Wallet getTransaction tests\n', function() {
@@ -50,7 +50,7 @@ describe('Wallet getTransaction tests\n', function() {
         expect(data.transactions).to.have.length.least(2);
         done();
       });
-        this.timeout(5000);
+        this.timeout(15000);
     });
 
 //4th 

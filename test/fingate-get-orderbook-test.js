@@ -6,9 +6,9 @@ const Wallet         = require('../lib/Wallet');
 const tdat           = require('./Test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
-fingate.setMode(false);//切换到测试环境
+fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
 
-describe('FinGate order book test', function() {
+describe('wallet order book test', function() {
 
   describe('test get order book', function() {
     it('SWT vs USD', function(done) {
@@ -18,10 +18,12 @@ describe('FinGate order book test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
+        console.log(data);
         done();
       });
       this.timeout(50000);
     });
+return;
     it('USD vs CNY with inactived account', function(done) {
       fingate.setAccount(tdat.InactiveWallet.secret);
       var pair = 'USD:jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS/CNY:jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS';
