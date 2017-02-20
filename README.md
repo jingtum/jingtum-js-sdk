@@ -47,7 +47,7 @@ Before using the FinGate, user should config the FinGate:
 There are two modes in FinGate: PRODUCTION and DEVELOPMENT.
 Default mode is PRODUCTION. To use DEVELOPMENT mode, 
 ```js
-fingate.setMode(false);
+fingate.setMode(fingate.DEVELOPEMENT);
 ```
 ### Setup FinGate Account
 FinGate account is a type of Jingtum account used for business customers.
