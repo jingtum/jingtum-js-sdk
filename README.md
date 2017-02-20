@@ -15,7 +15,7 @@ It provides:
 
 Using npm to include jingtum-js-sdk in your own project:
 ### To use as a module in a Node.js project
-1. Install the jingtum-sd through npm:
+1. Install the jingtum-sdk through npm:
 ```shell
 npm install jingtum-sdk --save
 ```

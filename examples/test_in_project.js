@@ -22,7 +22,7 @@ var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 
 
 //激活钱包
-fingate.setActiveAmount(10);//默认25
+fingate.setActiveAmount(25);//默认25
 fingate.activateWallet(wallet.address, function (err, data) {
     if(err) console.log(err);
     console.log(data);

@@ -39,7 +39,7 @@ describe('wallet create order test', function() {
 				expect(data.sequence).to.not.null;
 				done();
 			});
-			this.timeout(10000);
+			this.timeout(50000);
 		});
 		it('async swt/usd order', function(done) {
 			var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');

@@ -64,7 +64,7 @@ describe('wallet cancel order test', function() {
 					done();
 				});
 			});
-			this.timeout(15000);
+			this.timeout(25000);
 		});
 	});
 });

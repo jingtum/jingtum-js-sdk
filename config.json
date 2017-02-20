@@ -2,7 +2,7 @@
   "isTest":0,
   "test_ws": "wss://tapi.jingtum.com:5443",
   "test_server": "https://tapi.jingtum.com",
-  "test_fingate": "http://tfingate.jingtum.com/v1/business/node",
+  "test_fingate": "https://tfingate.jingtum.com/v1/business/node",
   "ws": "wss://api.jingtum.com:5443",
   "server": "https://api.jingtum.com",
   "fingate": "https://fingate.jingtum.com/v1/business/node"

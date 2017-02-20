@@ -80,5 +80,6 @@ describe('FinGate test\n', function() {
             expect(data.currency).to.equal('8200000006000020170019000000000020000001');
             done();
         });
+        this.timeout(15000);
     });
 });
