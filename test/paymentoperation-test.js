@@ -22,7 +22,8 @@ describe('Wallet payment test\n', function() {
     });
 
     it('1.Submit 0.01 SWT payment with syn option', function(done) {
-        var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+        //var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+        var wallet = new Wallet('ssHC71HCbhp6FVLLcK2oyyUVjcAY4');
         var payment = new PaymentOperation(wallet);
         payment.setValidate(true);
         payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
@@ -30,13 +31,14 @@ describe('Wallet payment test\n', function() {
         var id = new sr().getClientResourceID();
         payment.setClientId(id);
         payment.submit(function (err, data) {
+            //console.log(data);
             expect(err).to.be.null;
             expect(data).to.not.empty;
             expect(data.success).to.be.true;
             expect(data.client_resource_id).to.be.equal(id);
             done();
         });
-        this.timeout(10000);
+        this.timeout(20000);
     });
 
 
@@ -49,6 +51,7 @@ describe('Wallet payment test\n', function() {
         var id = new sr().getClientResourceID();
         payment.setClientId(id);
         payment.submit(function (err, data) {
+            //console.log(data);
             expect(err).to.be.null;
             expect(data).to.not.empty;
             expect(data.success).to.be.true;

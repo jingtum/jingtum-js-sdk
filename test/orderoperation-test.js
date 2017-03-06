@@ -25,7 +25,8 @@ describe('wallet create order test', function() {
 		});
 
 		it('sync swt/usd order', function(done) {
-			var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+			//var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+			var wallet = new Wallet('safUazSj1q6v4CVYEyeF58k59USfC');
 			var order = new OrderOperation(wallet);
 			order.setValidate(true);
 			order.setPair('SWT/USD:jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT');
@@ -33,16 +34,17 @@ describe('wallet create order test', function() {
 			order.setAmount(0.1);
 			order.setPrice(0.5);
 			order.submit(function (err, data) {
+				//console.log(data);
 				expect(err).to.be.null;
 				expect(data.success).to.be.equal(true);
 				expect(data.state).to.be.equal('validated');
 				expect(data.sequence).to.not.null;
 				done();
 			});
-			this.timeout(50000);
+			this.timeout(10000);
 		});
 		it('async swt/usd order', function(done) {
-			var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+			var wallet = new Wallet('safUazSj1q6v4CVYEyeF58k59USfC');
 			var order = new OrderOperation(wallet);
 			order.setValidate(false);
 			order.setPair('SWT/USD:jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT');

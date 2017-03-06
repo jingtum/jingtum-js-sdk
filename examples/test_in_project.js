@@ -22,7 +22,7 @@ var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 
 
 //激活钱包
-fingate.setActiveAmount(25);//默认25
+fingate.setActiveAmount(10);//默认25
 fingate.activateWallet(wallet.address, function (err, data) {
     if(err) console.log(err);
     console.log(data);
@@ -154,6 +154,19 @@ wallet.getTransactionList({'source_account':'jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk'
 });
 
 
+//获得指定类型关系
+wallet.getRelations({type:'frozen'}, function (err, data) {
+    if(err) console.log(err);
+    console.log(data);
+});
+
+//获得指定类型、指定对方账号的关系
+wallet.getRelations({type:'authorize',counterparty:'jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ'}, function (err, data) {
+    if(err) console.log(err);
+    console.log(data);
+});
+
+
 //---------------fingate.js---------------------------
 
 var fingate = JingtumSDK.FinGate;
@@ -270,6 +283,53 @@ trustline.submit(function (err, res) {
     console.log(res);
 });
 
+/*设置关系*/
+var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+var relation = new JingtumSDK.RelationsOperation(wallet);
+var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
+var Amount = JingtumSDK.Amount;
+var amount = new Amount('100', 'USD', 'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS');
+relation.setCounterparty(walletNew.address);
+relation.setType(relations.FRIEND);
+relation.setAmount(amount);
+relation.submit(function(err,res){
+    if(err) console.log(err);
+    else console.log(res);
+});
+
+/*取消关系*/
+var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
+var relation = new JingtumSDK.RemoveRelationsOperation(wallet);
+var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
+var Amount = JingtumSDK.Amount;
+var amount = new Amount('100', 'USD', 'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS');
+relation.setCounterparty(walletNew.address);
+relation.setType(relation.FRIEND);
+relation.setAmount(amount);
+relation.submit(function(err,res){
+    if(err) console.log(err);
+    else console.log(res);
+});
+
+/*账号设置*/
+var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');//jLRdkbLyEwMLKAeGHMh8zfxWQDagPmZEaw
+var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');//jLRdkbLyEwMLKAeGHMh8zfxWQDagPmZEaw
+var Settings = JingtumSDK.SettingsOperation;
+var settings = new Settings(wallet);
+settings.setRegularKey(walletNew.address);
+settings.setDomain('hahah');
+settings.setEmailHash('123@qq.com');
+settings.setWalletLocator('02158995447');
+settings.setMessageKey('messageKey');
+settings.setTransferRate(1.2);
+settings.setDisallowSwt(false);
+settings.setRequireDestinationTag(false);
+settings.setRequireAuthorization(false);
+settings.setDisableMaster(false);
+settings.submit(function (err, data) {
+    if(err) console.log(err);
+    console.log(data);
+});
 
 //--------------websocketServer------------------------
 

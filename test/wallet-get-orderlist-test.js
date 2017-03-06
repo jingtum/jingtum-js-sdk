@@ -19,7 +19,6 @@ describe('Test order list\n', function() {
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
         expect(data.orders).to.have.length.least(1);
-console.log(data.orders);
         done();
       });
     });
@@ -38,7 +37,7 @@ console.log(data.orders);
       wallet.getOrderList(function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
-        console.log("Return orders", data.orders.length);
+        //console.log("Return orders", data.orders.length);
         expect(data.orders).to.have.length.least(1);
         done();
       });
