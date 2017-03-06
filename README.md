@@ -1,6 +1,6 @@
 # Jingtum NODE JS SDK
 
-Jingtum SDK NODE JS version 2.1.1
+Jingtum SDK NODE JS version 1.0.1
 
 
 Jingtum-js-sdk is a client side NODE Javascript library 
