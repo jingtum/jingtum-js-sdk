@@ -1,5 +1,5 @@
 /*
- * Test for get order book operations
+ * Test FinGate3 get order book method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');

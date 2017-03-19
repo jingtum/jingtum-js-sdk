@@ -1,6 +1,6 @@
-///**
-// * Created by lipc on 2016/11/7.
-// */
+/**
+* Test program for Jingtum-js-SDK usage.
+*/
 var JingtumSDK = require('jingtum-sdk');
 
 

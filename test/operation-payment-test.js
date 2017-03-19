@@ -1,6 +1,6 @@
 /**
- * Created by lipc on 2016/11/21.
- */
+ * Test payment operations
+*/
 const expect           = require('chai').expect;
 const Wallet           = require('../lib/Wallet');
 const PaymentOperation = require('../lib/PaymentOperation');

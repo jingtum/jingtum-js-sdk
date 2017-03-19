@@ -1,5 +1,5 @@
 /*
- * Test for get order list operations
+ * Test Wallet get order list method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');

@@ -1,5 +1,5 @@
 /*
- * Test for get balance operations
+ * Test Wallet get balance method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');

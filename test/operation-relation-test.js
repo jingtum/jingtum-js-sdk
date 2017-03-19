@@ -1,3 +1,6 @@
+/**
+ * Test Relation and remove Relation operations
+*/
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const RelationsOperation = require('../lib/RelationsOperation');

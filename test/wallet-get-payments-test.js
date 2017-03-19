@@ -1,5 +1,5 @@
 /*
- * Test for get payment list operations
+ * Test for get payment list methods
  * and get payment by HASH/ID.
 */
 const expect         = require('chai').expect;

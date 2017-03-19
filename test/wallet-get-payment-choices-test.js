@@ -1,5 +1,5 @@
 /*
- * Test for get payment path operations
+ * Test Wallet get ayment choices method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');

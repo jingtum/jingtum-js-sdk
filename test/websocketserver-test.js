@@ -1,6 +1,6 @@
-/**
- * Created by lipc on 2016/11/22.
- */
+/*
+ * Test websocket methods
+*/
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const WS             = require('../lib/WebSocketServer');

@@ -1,5 +1,5 @@
 /*
- * Test for get settings operations
+ * Test for get settings methods
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');

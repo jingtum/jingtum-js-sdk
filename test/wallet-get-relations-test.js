@@ -1,5 +1,5 @@
 /*
- * Test for get relations operations
+ * Test for get relations methods
 */
 const expect                  = require('chai').expect;
 const Wallet                  = require('../lib/Wallet');

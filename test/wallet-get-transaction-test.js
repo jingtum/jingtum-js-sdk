@@ -1,5 +1,5 @@
 /*
- * Test for get transactionList operations
+ * Test for get transactionList methods
  * and get transaction by HASH/ID.
 */
 const expect         = require('chai').expect;
