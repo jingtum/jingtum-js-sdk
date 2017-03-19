@@ -21,7 +21,7 @@ describe('wallet balance test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.balances.length).to.have.least(1);
-        //console.log(data.balances);
+        console.log(data.balances);
         done();
       });
     });

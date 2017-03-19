@@ -16,7 +16,6 @@ describe('Wallet relations tests', function() {
     it('1. Get relations with type', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getRelations({type:'authorize'}, function(err, data) {
-        //console.log(data);
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.relations).to.have.length.least(1);
@@ -25,26 +24,14 @@ describe('Wallet relations tests', function() {
     });
     it('2. Get relations with type and counterparty', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
-      console.log("counterparty: "+tdat.DEV.wallet3.address);
-        wallet.getRelations({type:'authorize',counterparty:'j44rkkVKxnqhm9cP7kQqpj27YGYTFAEFRh'}, function(err, data) {
-        //console.log(data);
+      wallet.getRelations({type:'authorize',counterparty:tdat.DEV.wallet3.address}, function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.relations).to.have.length.least(1);
         done();
       });
     });
-    it('3. Get relations with type but incorrect counterparty, return an empty array', function(done) {
-      var wallet = new Wallet(tdat.DEV.wallet2.secret);
-      
-      wallet.getRelations({type:'authorize',counterparty:tdat.DEV.wallet3.address}, function(err, data) {
-        //console.log(data);
-        expect(err).to.be.null;
-        expect(data).to.not.empty;
-        expect(data.relations).to.empty;
-        done();
-      });
-    });
+
   });
 });
 

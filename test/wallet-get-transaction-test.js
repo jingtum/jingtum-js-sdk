@@ -21,7 +21,7 @@ describe('Wallet getTransaction tests\n', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.transactions).to.have.length.least(8);
-        //console.log(data);
+        console.log(data);
         done();
       });
         this.timeout(15000);
