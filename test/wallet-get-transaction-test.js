@@ -1,10 +1,10 @@
 /*
- * Test for get transactionList operations
+ * Test for get transactionList methods
  * and get transaction by HASH/ID.
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const tdat = require('./Test_data.json');//Test data
+const tdat = require('./test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
@@ -21,7 +21,7 @@ describe('Wallet getTransaction tests\n', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.transactions).to.have.length.least(8);
-        //console.log(data);
+        console.log(data);
         done();
       });
         this.timeout(15000);

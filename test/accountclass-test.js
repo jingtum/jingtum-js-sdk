@@ -1,3 +1,6 @@
+/*
+ * Test AccountClass method
+*/
 const AccountClass     = require('../lib/AccountClass');
 const expect         = require('chai').expect;
 

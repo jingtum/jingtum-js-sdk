@@ -1,3 +1,6 @@
+/*
+ * Test Wallet address and environment method
+*/
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const config         = require('../config.json');

@@ -1,9 +1,9 @@
 /*
- * Test for get order book operations
+ * Test FinGate3 get order book method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const tdat           = require('./Test_data.json');//Test data
+const tdat           = require('./test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
@@ -18,7 +18,7 @@ describe('wallet order book test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
-        //console.log(data);
+        console.log(data);
         done();
       });
       this.timeout(50000);

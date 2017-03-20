@@ -1,10 +1,10 @@
 /*
- * Test for get balance operations
+ * Test Wallet get balance method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 
-const tdat = require('./Test_data.json');//Test data
+const tdat = require('./test_data.json');//Test data
 const fingate          = require('../lib/FinGate');
 
 
@@ -21,7 +21,7 @@ describe('wallet balance test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.balances.length).to.have.least(1);
-        //console.log(data.balances);
+        console.log(data.balances);
         done();
       });
     });

@@ -1,3 +1,6 @@
+/*
+ * Test Wallet get order method
+*/
 const expect         = require('chai').expect;
 const printf         = require('printf');
 const Wallet         = require('../lib/Wallet');

@@ -1,10 +1,10 @@
 /*
- * Test for get payment path operations
+ * Test for get payment path methods
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
 const ParamException = require('../lib/Error').ParamException;
-const tdat = require('./Test_data.json');//Test data
+const tdat = require('./test_data.json');//Test data
 var sha1             = require('sha1');
 const fingate        = require('../lib/FinGate');
 

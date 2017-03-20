@@ -1,9 +1,9 @@
 /*
- * Test for get settings operations
+ * Test for get settings methods
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const tdat = require('./Test_data.json');//Test data
+const tdat = require('./test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换

@@ -1,9 +1,9 @@
 /*
- * Test for get order list operations
+ * Test Wallet get order list method
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const tdat = require('./Test_data.json');//Test data
+const tdat = require('./test_data.json');//Test data
 const fingate        = require('../lib/FinGate');
 
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试换
@@ -19,6 +19,7 @@ describe('Test order list\n', function() {
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
         expect(data.orders).to.have.length.least(1);
+console.log(data.orders);
         done();
       });
     });
@@ -37,7 +38,7 @@ describe('Test order list\n', function() {
       wallet.getOrderList(function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
-        //console.log("Return orders", data.orders.length);
+        console.log("Return orders", data.orders.length);
         expect(data.orders).to.have.length.least(1);
         done();
       });
