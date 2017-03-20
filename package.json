@@ -1,6 +1,6 @@
 {
   "name": "jingtum-sdk",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "jingtum node.js sdk for clients development",
   "keywords": [
     "jingtum,swt,fingate,wallet"
