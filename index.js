@@ -5,7 +5,6 @@ const WebSocketServer = require('./lib/WebSocketServer');
 const PaymentOperation = require('./lib/PaymentOperation');
 const OrderOperation = require('./lib/OrderOperation');
 const CancelOrderOperation = require('./lib/CancelOrderOperation');
-const TrustlineOperation = require('./lib/TrustlineOperation');
 
 
 exports.DataCheck = DataCheck;
@@ -15,4 +14,3 @@ exports.FinGate = FinGate;
 exports.PaymentOperation = PaymentOperation;
 exports.OrderOperation = OrderOperation;
 exports.CancelOrderOperation = CancelOrderOperation;
-exports.TrustlineOperation = TrustlineOperation;
