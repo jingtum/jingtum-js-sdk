@@ -273,16 +273,6 @@ cancelorder.submit(function (err, res) {
 });
 
 
-///*设置信任*/
-var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
-var trustline = new JingtumSDK.TrustlineOperation(wallet);
-trustline.setValidate(true);
-trustline.setTrustlineAmount({currency:'USD',value:'100',issuer:'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'});
-trustline.submit(function (err, res) {
-    if(err) {console.log(err);return;}
-    console.log(res);
-});
-
 /*设置关系*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
 var relation = new JingtumSDK.RelationsOperation(wallet);
