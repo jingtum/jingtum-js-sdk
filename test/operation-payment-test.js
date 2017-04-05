@@ -26,7 +26,7 @@ describe('Wallet payment test\n', function() {
         var payment = new PaymentOperation(wallet);
         payment.setValidate(true);
         payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
-        payment.setAmount({'currency':'SWT','value':'0.01','issue':''});
+        payment.setAmount({'currency':'SWT','value':'0.01','issuer':''});
         var id = new sr().getClientResourceID();
         payment.setClientId(id);
         payment.submit(function (err, data) {
@@ -45,7 +45,7 @@ describe('Wallet payment test\n', function() {
         var payment = new PaymentOperation(wallet);
         payment.setValidate(false);
         payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
-        payment.setAmount({'currency':'SWT','value':'0.01','issue':''});
+        payment.setAmount({'currency':'SWT','value':'0.01','issuer':''});
         var id = new sr().getClientResourceID();
         payment.setClientId(id);
         payment.submit(function (err, data) {

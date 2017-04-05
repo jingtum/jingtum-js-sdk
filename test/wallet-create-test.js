@@ -51,5 +51,13 @@ describe('wallet class test', function() {
 			expect(wallet2._server._serverURL).to.equal(config.test_server)
 		});
 	});
+        describe('set active amount', function() {
+                it('test FinGate active amount', function() {
+                        fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
+                        fingate.setActiveAmount(30);
+                        expect(fingate.this.activeAmount).to.equal(30)
+                });
+        });
+
 });
 

@@ -29,13 +29,14 @@ describe('wallet get payment list test', function() {
     it('not activated account', function(done) {
       var wallet = new Wallet('sas6eH75R6cRPF2Mz7RoyFdTjrQ6R');
         wallet.getPaymentList({results_per_page:5,page:1}, function(err, data) {
+        console.log(data);
         expect(err).to.be.null;
         expect(data.success).to.equal(true);
         expect(data.payments).to.eql([]);
         done();
       });
     });
-
+return;
 //3rd
     it('payment list with client_resource_id', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet3.secret);

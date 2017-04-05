@@ -35,11 +35,11 @@ describe('Operation batch operation test\n', function() {
     //     //build each operation
     //     var op1 = new PaymentOperation(wallet2);
     //     op1.setDestAddress(wallet3.address);
-    //     op1.setAmount({'currency':'SWT','value':'0.01','issue':''});
+    //     op1.setAmount({'currency':'SWT','value':'0.01','issuer':''});
 
     //     var op2 = new PaymentOperation(wallet3);
     //     op2.setDestAddress(wallet2.address);
-    //     op2.setAmount({'currency':'SWT','value':'0.01','issue':''});
+    //     op2.setAmount({'currency':'SWT','value':'0.01','issuer':''});
 
     //     //build batch operations
     //     var bop = new BatchOperation(wallet2);
