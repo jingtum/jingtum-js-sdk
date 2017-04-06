@@ -1,12 +1,22 @@
 /**
 * Test program for Jingtum-js-SDK usage.
 */
-var JingtumSDK = require('jingtum-sdk');
+//If installed globla module use this
+//var JingtumSDK = require('jingtum-sdk');
+//local module only
+var JingtumSDK = require('../../jingtum-js-sdk');
+
+
+var fingate = JingtumSDK.FinGate;
+//切换正式与测试环境
+fingate.setMode(fingate.PRODUCTION);//正式环境
+console.log(fingate._single);
+fingate.setMode(fingate.DEVELOPEMENT);//测试环境
+console.log(fingate._single);
 
 
 //----------------------wallet-----------------------------
 //创建钱包1
-var fingate = JingtumSDK.FinGate;
 var wallet = fingate.createWallet();
 console.log(wallet);
 console.log(wallet.getWallet());
@@ -23,6 +33,9 @@ var wallet = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 
 //激活钱包
 fingate.setActiveAmount(30);//默认25
+
+//激活钱包需要设置银关账号
+fingate.setAccount('ssPitXium2f2ZxifEaAB2YTpJUpJV');
 fingate.activateWallet(wallet.address, function (err, data) {
     if(err) console.log(err);
     console.log(data);
@@ -35,21 +48,18 @@ walletNew.isActivated(function (err,msg) {
 });
 
 
-//切换正式与测试环境
-fingate.setMode(fingate.PRODUCTION);//正式环境
-console.log(fingate._single);
-fingate.setMode(fingate.DEVELOPEMENT);//测试环境
-console.log(fingate._single);
 
 //查询余额
+walletNew.getBalance('SWT', function(err, data) {//获得指定货币余额
+    if(err) console.log(err);
+    else console.log(data);
+});
+//
 wallet.getBalance(function (err, data) {
     if(err) console.log(err);
     else console.log(data);
 });
-wallet.getBalance('SWT', function(err, data) {//获得指定货币余额
-    if(err) console.log(err);
-    else console.log(data);
-});
+
 wallet.getBalance('USD', function(err, data) {//获得指定货币余额
     if(err) console.log(err);
     else console.log(data);
@@ -67,29 +77,6 @@ wallet.getSettings(function (err, data) {
     else console.log(data);
 });
 
-//获得账号所有信任
-wallet.getTrustLineList(null, function(err, data) {
-    if(err) console.log(err);
-    else console.log(data);
-});
-
-//获得账号指定货币的信任
-wallet.getTrustLineList({'currency':'USD'}, function(err, data) {
-    if(err) console.log(err);
-    else console.log(data);
-});
-
-//获得账号指定对家的信任
-wallet.getTrustLineList({'issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'}, function(err, data) {
-    if(err) console.log(err);
-    else console.log(data);
-});
-
-//获得账号指定货币和对家的信任（limit可不写，若写必须为'all'）
-wallet.getTrustLineList({'currency':'USD','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT','limit':'all'}, function(err, data) {
-    if(err) console.log(err);
-    else console.log(data);
-});
 
 //查询支付路径
 wallet.getChoices('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R',{'value':'1.00','currency':'CNY','issuer':'jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT'},null
@@ -173,9 +160,9 @@ var fingate = JingtumSDK.FinGate;
 console.log(fingate.createWallet());
 fingate.setAccount('sn37nYrQ6KPJvTFmaBYokS3FjXUWd','jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ');
 fingate.setMode(fingate.PRODUCTION);//切换到正式环境
-console.log(fingate._url);
+console.log("Switch to %s", fingate._url);
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
-console.log(fingate._url);
+console.log("Switch to %s", fingate._url);
 
 //获得市场货币对的挂单信息
 fingate.getOrderBook('CNY:jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS/USD:jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS', function (err, data) {
@@ -221,7 +208,7 @@ var payment = new JingtumSDK.PaymentOperation(wallet);
 payment.setDestAddress('jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk');
 payment.setAmount({'currency':'SWT','value':'0.01','issuer':''});
 payment.setValidate(true);
-payment.setClientId('20611171957');
+//payment.setClientId('20611171957');
 payment.submit(function (err, res) {
     if(err) {console.log(err);return;}
     console.log(res);
@@ -232,6 +219,7 @@ wallet.getChoices('jnxxSNnx6yshDKDZUSaxjJi272aREJ3W1R',{'value':'0.01','currency
     , function(err, data) {
         if(err) console.log(err);
         else {
+            console.log('Make payment using the path:');
             console.log(data);
             var key = data[0].key;
             var payment = new JingtumSDK.PaymentOperation(wallet);
@@ -280,7 +268,7 @@ var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 var Amount = JingtumSDK.Amount;
 var amount = new Amount('100', 'USD', 'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS');
 relation.setCounterparty(walletNew.address);
-relation.setType(relations.FRIEND);
+relation.setType(relation.FRIEND);
 relation.setAmount(amount);
 relation.submit(function(err,res){
     if(err) console.log(err);
@@ -325,7 +313,7 @@ settings.submit(function (err, data) {
 
 //消息订阅
 fingate.setMode(fingate.DEVELOPEMENT);//切换到测试环境
-var JingtumSDK = require('jingtum-sdk');
+//var JingtumSDK = require('jingtum-sdk');
 var ws = new JingtumSDK.WebSocketServer();
 console.log(ws._ws.url);
 ws.connect();

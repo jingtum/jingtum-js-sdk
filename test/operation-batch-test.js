@@ -16,7 +16,7 @@ const SettingsOperation        = require('../lib/SettingsOperation');
 
 
 describe('Operation batch operation test\n', function() {
-    it('change environment', function () {
+    it('1. change environment', function () {
         fingate.setMode(fingate.PRODUCTION);
         var wallet = new Wallet(tdat.DEV.wallet2.secret);
         var bop1 = new BatchOperation(wallet);
@@ -197,7 +197,7 @@ describe('Operation batch operation test\n', function() {
  //        this.timeout(10000);
  //    });
 
-   it('4.Set settings operations', function(done) {
+   it('2.Set settings operations', function(done) {
         var wallet2 = new Wallet(tdat.DEV.wallet5.secret);
         var wallet3 = new Wallet(tdat.DEV.wallet6.secret);
 
