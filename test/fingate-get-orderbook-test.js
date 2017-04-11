@@ -18,7 +18,7 @@ describe('wallet order book test', function() {
         expect(err).to.be.null;
         expect(data).to.not.empty;
         expect(data.success).to.equal(true);
-        console.log(data);
+//        console.log(data);
         done();
       });
       this.timeout(50000);

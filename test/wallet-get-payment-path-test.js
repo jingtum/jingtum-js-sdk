@@ -1,5 +1,7 @@
 /*
  * Test for get payment path methods
+ * Added the payment path by currency choice
+ * test.
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
@@ -15,7 +17,6 @@ describe('Tests about payment path\n', function() {
   before(function() {
     //Init the server
   });
-
   describe('Get path tests\n', function() {
     it('SWT payment path:', function(done) {
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
@@ -37,16 +38,14 @@ describe('Tests about payment path\n', function() {
         done();
       });
     });
-
-    it('Payment path not exist test', function(done) {
+    it('Payment path for USD test', function(done) {
       // have cny
       var wallet = new Wallet(tdat.DEV.wallet2.secret);
       wallet.getChoices(tdat.DEV.wallet3.address,
           tdat.DEV.USDAmount1,null, function(err, data) {
         expect(err).to.be.null;
         expect(data).to.not.empty;
-        expect(data.success).to.be.failed;
-        expect(data.message).to.be.equal('No paths found. The destination_account does not accept USD, source may not fund enough.');
+        expect(data.length).to.be.least(1);
         done();
       });
     });
@@ -64,14 +63,14 @@ describe('Tests about payment path\n', function() {
         done();
       });
     });
-    it('Payment path with currency type', function(done) {
-      var wallet = new Wallet(tdat.DEV.wallet2.secret);
-      wallet.getChoices(tdat.DEV.wallet3.address,
-          {"currency":"CNY", "value": "0.01", "issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT"},
-          {'issuer':'jMhLAPaNFo288PNo5HMC37kg6ULjJg8vPf','currency':'USD'}, function(err, data) {
+  
+      it('Payment path with currency type', function(done) {
+      var wallet = new Wallet(tdat.DEV.wallet3.secret);
+      wallet.getChoices(tdat.DEV.wallet4.address,
+          {"currency":"USD", "value": "0.01", "issuer":"jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS"},
+          {'issuer':'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS','currency':'CNY'}, function(err, data) {
         expect(err).to.be.null;
         expect(data.length).to.be.least(1);
-        expect(data[0].key).to.eql(sha1(JSON.stringify('[[{"currency":"CNY","issuer":"jMcCACcfG37xHy7FgqHerzovjLM5FCk7tT","type":48,"type_hex":"0000000000000030"}]]')));
         done();
       });
     });

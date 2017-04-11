@@ -1,7 +1,9 @@
 # Jingtum NODE JS SDK
 
 Jingtum SDK NODE JS version 1.0.2
+
 Notice, npm published version should be 1.1.x.
+
 Any version in 2.x.x should not be used now.
 
 
