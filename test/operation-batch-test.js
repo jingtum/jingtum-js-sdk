@@ -10,8 +10,8 @@ const Wallet           = require('../lib/Wallet');
 const PaymentOperation = require('../lib/PaymentOperation');
 const BatchOperation   = require('../lib/BatchOperation');
 const OrderOperation   = require('../lib/OrderOperation');
-const RelationsOperation       = require('../lib/RelationsOperation');
-const RemoveRelationsOperation = require('../lib/RemoveRelationsOperation');
+const RelationOperation       = require('../lib/RelationOperation');
+const RemoveRelationOperation = require('../lib/RemoveRelationOperation');
 const SettingsOperation        = require('../lib/SettingsOperation');
 
 
@@ -63,12 +63,12 @@ describe('Operation batch operation test\n', function() {
     //     var wallet3 = new Wallet(tdat.DEV.wallet6.secret);
 
     //     //build each operation
-    //     var op1 = new RelationsOperation(wallet2);
+    //     var op1 = new RelationOperation(wallet2);
     //     op1.setCounterparty(tdat.DEV.wallet3.address);
     //     op1.setType(op1.AUTHORIZE);
     //     op1.setAmount(tdat.DEV.CNYAmount1);
 
-    //     var op2 = new RelationsOperation(wallet3);
+    //     var op2 = new RelationOperation(wallet3);
     //     op2.setCounterparty(tdat.DEV.wallet2.address);
     //     op2.setType(op2.AUTHORIZE);
     //     op2.setAmount(tdat.DEV.CNYAmount1);
@@ -88,7 +88,7 @@ describe('Operation batch operation test\n', function() {
 
     //         //Canceling the relations
 
-    //         var relation = new RemoveRelationsOperation(wallet2);
+    //         var relation = new RemoveRelationOperation(wallet2);
     //         relation.setValidate(true);
     //         relation.setCounterparty(tdat.DEV.wallet3.address);
     //         relation.setType(relation.AUTHORIZE);
@@ -100,7 +100,7 @@ describe('Operation batch operation test\n', function() {
     //         });
             
 
-    //         var relation = new RemoveRelationsOperation(wallet3);
+    //         var relation = new RemoveRelationOperation(wallet3);
     //         relation.setValidate(true);
     //         relation.setCounterparty(tdat.DEV.wallet2.address);
     //         relation.setType(relation.AUTHORIZE);

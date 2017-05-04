@@ -6,7 +6,7 @@ const Wallet         = require('../lib/Wallet');
 const SettingsOperation = require('../lib/SettingsOperation');
 const config         = require('../config.json');
 const fingate        = require('../lib/FinGate');
-const tdat           = require('./Test_data.json');
+const tdat           = require('./test_data.json');
 
 fingate.setMode(fingate.DEVELOPEMENT);
 

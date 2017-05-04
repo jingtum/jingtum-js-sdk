@@ -3,8 +3,8 @@
 */
 const expect         = require('chai').expect;
 const Wallet         = require('../lib/Wallet');
-const RelationsOperation = require('../lib/RelationsOperation');
-const RemoveRelationsOperation = require('../lib/RemoveRelationsOperation');
+const RelationOperation = require('../lib/RelationOperation');
+const RemoveRelationOperation = require('../lib/RemoveRelationOperation');
 const config         = require('../config.json');
 const fingate        = require('../lib/FinGate');
 const tdat           = require('./test_data.json');
@@ -13,22 +13,22 @@ fingate.setMode(fingate.DEVELOPEMENT);
 
 describe('Test relation operation and remove relation operation', function() {
 
-	describe('test normal create relations', function() {
+	describe('test normal create relation', function() {
 		it('change environment', function () {
 			var wallet = new Wallet(tdat.DEV.wallet1.secret);
 
 			fingate.setMode(fingate.PRODUCTION);
-			var relation1 = new RelationsOperation(wallet);
+			var relation1 = new RelationOperation(wallet);
 			expect(relation1._server._serverURL).to.equal(config.server);
 
 			fingate.setMode(fingate.DEVELOPEMENT);
-			var relation2 = new RelationsOperation(wallet);
+			var relation2 = new RelationOperation(wallet);
 			expect(relation2._server._serverURL).to.equal(config.test_server);
 		});
 
 		it('sync swt/usd relation', function(done) {
 			var wallet = new Wallet(tdat.DEV.wallet2.secret);
-			var relation = new RelationsOperation(wallet);
+			var relation = new RelationOperation(wallet);
 			relation.setValidate(true);
 			relation.setCounterparty(tdat.DEV.wallet1.address);
 			relation.setType(relation.AUTHORIZE);
@@ -43,7 +43,7 @@ describe('Test relation operation and remove relation operation', function() {
 		});
 		it('async swt/usd relation', function(done) {
 			var wallet = new Wallet(tdat.DEV.wallet2.secret);
-			var relation = new RelationsOperation(wallet);
+			var relation = new RelationOperation(wallet);
 			relation.setValidate(false);
 			relation.setCounterparty(tdat.DEV.wallet1.address);
 			relation.setType(relation.AUTHORIZE);
@@ -57,22 +57,22 @@ describe('Test relation operation and remove relation operation', function() {
 		});
 	});
 
-	describe('test normal remove relations', function() {
+	describe('test normal remove relation', function() {
 		it('change environment', function () {
 			var wallet = new Wallet(tdat.DEV.wallet1.secret);
 
 			fingate.setMode(fingate.PRODUCTION);
-			var relation1 = new RemoveRelationsOperation(wallet);
+			var relation1 = new RemoveRelationOperation(wallet);
 			expect(relation1._server._serverURL).to.equal(config.server);
 
 			fingate.setMode(fingate.DEVELOPEMENT);
-			var relation2 = new RemoveRelationsOperation(wallet);
+			var relation2 = new RemoveRelationOperation(wallet);
 			expect(relation2._server._serverURL).to.equal(config.test_server);
 		});
 
 		it('sync swt/usd relation', function(done) {
 			var wallet = new Wallet(tdat.DEV.wallet2.secret);
-			var relation = new RemoveRelationsOperation(wallet);
+			var relation = new RemoveRelationOperation(wallet);
 			relation.setValidate(true);
 			relation.setCounterparty(tdat.DEV.wallet1.address);
 			relation.setType(relation.AUTHORIZE);
@@ -87,7 +87,7 @@ describe('Test relation operation and remove relation operation', function() {
 		});
 		it('async swt/usd relation', function(done) {
 			var wallet = new Wallet(tdat.DEV.wallet2.secret);
-			var relation = new RemoveRelationsOperation(wallet);
+			var relation = new RemoveRelationOperation(wallet);
 			relation.setValidate(false);
 			relation.setCounterparty(tdat.DEV.wallet1.address);
 			relation.setType(relation.AUTHORIZE);

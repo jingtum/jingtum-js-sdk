@@ -142,13 +142,13 @@ wallet.getTransactionList({'source_account':'jp53tPyrQLoFriTJhtm8Z9iLUXUDucnwVk'
 
 
 //获得指定类型关系
-wallet.getRelations({type:'frozen'}, function (err, data) {
+wallet.getRelationList({type:'frozen'}, function (err, data) {
     if(err) console.log(err);
     console.log(data);
 });
 
 //获得指定类型、指定对方账号的关系
-wallet.getRelations({type:'authorize',counterparty:'jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ'}, function (err, data) {
+wallet.getRelationList({type:'authorize',counterparty:'jB7rxgh43ncbTX4WeMoeadiGMfmfqY2xLZ'}, function (err, data) {
     if(err) console.log(err);
     console.log(data);
 });
@@ -263,7 +263,7 @@ cancelorder.submit(function (err, res) {
 
 /*设置关系*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
-var relation = new JingtumSDK.RelationsOperation(wallet);
+var relation = new JingtumSDK.RelationOperation(wallet);
 var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 var Amount = JingtumSDK.Amount;
 var amount = new Amount('100', 'USD', 'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS');
@@ -277,7 +277,7 @@ relation.submit(function(err,res){
 
 /*取消关系*/
 var wallet = new Wallet('shNKNNtxgBgZDa3YADcAKBFy5W5kK');
-var relation = new JingtumSDK.RemoveRelationsOperation(wallet);
+var relation = new JingtumSDK.RemoveRelationOperation(wallet);
 var walletNew = new Wallet('ssSHuRBvRt4TeB8eVE8CBRoB8cVAe');
 var Amount = JingtumSDK.Amount;
 var amount = new Amount('100', 'USD', 'jBciDE8Q3uJjf111VeiUNM775AMKHEbBLS');
