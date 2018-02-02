@@ -48,11 +48,14 @@ describe('FinGate test\n', function() {
     });
 
     it('send tong', function (done) {
+        // fingate.setToken('00000006');
+        fingate.setKey('599669081491b660cb5ea9b2c9a183378c10d86d');
         fingate.issueCustomTum(
             '8200000006000020170019000000000020000001',
             '0.01',
             'jpkLNK2D1y8D8sinoRuk2PXoT1eDQvx56p'
         , function (err,data) {
+            console.log(data);
             expect(err).to.be.null;
             expect(data).to.be.not.empty;
             expect(data.code).to.equal(0);
@@ -62,6 +65,8 @@ describe('FinGate test\n', function() {
     });
 
     it('send tong status', function (done) {
+        //fingate.setToken('00000006');
+        //fingate.setKey('599669081491b660cb5ea9b2c9a183378c10d86d');
         fingate.queryIssue('PREFIX90301520170118210106000001'
             , function (err,data) {
             expect(err).to.be.null;
